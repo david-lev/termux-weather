@@ -21,6 +21,12 @@ function get_termux_location() {
     location_json=$(timeout ${timeout} termux-location) &&
     location="$(echo ${location_json} | jq -r '.latitude'),$(echo ${location_json} | jq -r '.longitude')" || get_location
 }
+function get_city() {
+    echo -e "${yellow}Enter your city:${end}"
+    while [[ -z ${location} ]]; do
+        read location
+    done
+}
 function get_location() {
     echo -e "${yellow}We can not identify your location, select one of the options:\n${green}1:${end} Use my IP address to locate my location (approximate) \n${green}2:${end} Let me enter city name mannualy. \n${green}3:${end} exit."
     while [[ ${choice} != @(1|2|3) ]]; do
@@ -28,7 +34,7 @@ function get_location() {
     done
     case ${choice} in
         1) location=$(curl -sS ipinfo.io/loc) ;;
-        2) [[ ${run_on_termux} ]] && location=$(termux-dialog -t "Enter your city:" -i "e.g. Jerusalem" | jq -r '.text') || read -p "Enter your city: " location ;;
+        2) get_city ;;
         3) exit 1 ;;
     esac
 }
@@ -43,4 +49,5 @@ done
 
 # Get weather info:
 [[ ${run_on_termux} ]] && get_termux_location || get_location
+echo
 get_weather "${location}"
