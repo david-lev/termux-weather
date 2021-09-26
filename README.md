@@ -1,6 +1,6 @@
 # Termux-weather ⛅
 
-### Using the following script you can get the weather directly to your terminal!
+### Using the following script you can get the weather directly to your terminal based on your location!
 ![Alt image](https://telegra.ph/file/eb29015338c430ac1e051.jpg)
 ---
 Run the folowing command on your terminal:
