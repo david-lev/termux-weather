@@ -23,7 +23,7 @@ function get_termux_location() {
 }
 function get_location() {
     echo -e "${yellow}We can not identify your location, select one of the options:\n${green}1:${end} Use my IP address to locate my location (approximate) \n${green}2:${end} Let me enter city name mannualy. \n${green}3:${end} exit."
-    while [[ ${choice} != "1" && ${choice} != "2" && ${choice} != "3" ]]; do
+    while [[ ${choice} != @(1|2|3) ]]; do
         read choice
     done
     case ${choice} in
