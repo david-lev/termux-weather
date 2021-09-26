@@ -18,8 +18,8 @@ function check_dependencies() {
     command -v ${1} >/dev/null 2>&1 || (echo -e "${red}The package ${1} is missing. Installing now...${end}\n" && apt install ${pkg} -y)
 }
 function get_termux_location() { 
-    location_json=$(timeout ${timeout} termux-location) &&
-    location="$(echo ${location_json} | jq -r '.latitude'),$(echo ${location_json} | jq -r '.longitude')" || get_location
+    (location_json=$(timeout ${timeout} termux-location) &&
+    location="$(echo ${location_json} | jq -r '.latitude'),$(echo ${location_json} | jq -r '.longitude')") || get_location
 }
 function get_location() {
         echo -e "${yellow}We can not identify your location, select one of the options:\n${green}1:${end} Use my IP address to locate my location (approximate). \n${green}2:${end} Let me enter city name mannualy. \n${green}3:${end} exit."
