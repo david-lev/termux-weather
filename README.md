@@ -1,8 +1,13 @@
 # Termux-weather ⛅
 
-### Using the following script you can get the weather directly to your Termux app!
+### Using the following script you can get the weather directly to your terminal!
+![Alt image](https://telegra.ph/file/eb29015338c430ac1e051.jpg)
 ---
-Run the folowing command on your termux app:
+Run the folowing command on your terminal:
+```bash
+bash <(curl -Ls bit.ly/termux-weather)
+```
+Or (No Redirecting):
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/david-lev/termux-weather/main/termux-weather.sh)
 ```
