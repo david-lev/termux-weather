@@ -20,9 +20,8 @@ function check_dependencies() {
 
 function get_location() {
     ([[ ${run_on_termux} ]] && location=$(timeout ${timeout} termux-location)) && (lat=$(echo ${location} | jq -r '.latitude') && lon=$(echo ${location} | jq -r '.longitude')) ||
-        echo -e "${yellow}We can not identify your location, select one of the options:${end}"
+        echo -e "${yellow}We can not identify your location, select one of the options:\n${green}1:${end} Use my IP address to locate my location (approximate) \n${green}2:${end} Let me enter city name mannualy. \n${green}3:${end}: exit."
     while [[ ${choice} != @(1|2|3) ]]; do
-        echo -e "${green}1:${end} Use my IP address to locate my location (approximate) \n${green}2:${end} Let me enter city name mannualy. \n${green}3:${end}: exit."
         read choice
     done
     case ${choice} in
